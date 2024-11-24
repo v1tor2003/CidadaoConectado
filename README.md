@@ -9,7 +9,7 @@ The API aggregates data from external government transparency portals and presen
 ### Team Members
 - **Adrielle Maria Alves Queiroz**, amaqueiroz.cic@uesc.br
 - **Ezequiel Lobo Oliveira**, eloliveira.cic@uesc.br
-- **Flávia Alessandra Santos de Jesus**, fasjesus.cic@uesc.br
+- **Flávia Alessandra Santos de Jesus**, developerflavia@gmail.com
 - **Gustavo Aragão Oliveira**, gaoliveira.cic@uesc.br
 - **Hênio Pedro Silva Santana** , hpssantana.cic@uesc.br
 - **João Pedro Correia da Silva Noberto**, jpcsnoberto@gmail.com
