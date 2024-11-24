@@ -1,4 +1,5 @@
 using CidadaoConectado.API.Interfaces;
+using CidadaoConectado.API.Middlewares;
 using CidadaoConectado.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,16 +35,47 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.MapGet("/api/v1/resigns", async ([FromServices] IGovTransparencyApiService apiService) =>
+string apiVersion = "/api/v1";
+app.MapGet($"{apiVersion}/resigns", async ([FromServices] IGovTransparencyApiService apiService) =>
 {
-    var data = await apiService.GetResignValues();
+    var data = await apiService.GetResignValuesAsync();
 
-    if(data is null) return Results.Problem("Error while fetching data from external API.");
+    if(data is null) 
+        return Results.Problem("Error while fetching data from external API.");
 
     return Results.Json(data);
 })
 .WithName("GetResignsValues")
+.WithOpenApi();
+
+app.MapGet($"{apiVersion}/adments", async ([FromServices] IGovTransparencyApiService apiService) => {
+    var data = await apiService.GetParliamentaryAmendmentAsync();
+    
+    if(data is null) 
+        return Results.Problem("Error while fetching data from external API.");
+    
+    return Results.Json(data);
+})
+.WithName("GetParlamentaryAdments")
+.WithOpenApi();
+
+app.MapGet($"{apiVersion}/family-scholarships", 
+    async (
+        [FromQuery] string yearMonthDate, 
+        [FromQuery] string cityIbgeCode, 
+        [FromServices] IGovTransparencyApiService apiService
+    ) => 
+{
+    var data = await apiService.GetFamilyScholarshipsAsync(yearMonthDate, cityIbgeCode);
+    
+    if(data is null) 
+        return Results.Problem("Error while fetching data from external API.");
+    
+    return Results.Json(data);
+})
+.WithName("GetTest")
 .WithOpenApi();
 
 app.Run();

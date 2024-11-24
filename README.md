@@ -4,7 +4,20 @@
 
 The API aggregates data from external government transparency portals and presents it in a standardized format for easy integration into the **CidadaoConectado** website, which aims to increase citizen engagement in governance processes.
 
----
+## Project Ideation and Implementation:
+
+### Team Members
+- **Adrielle Maria Alves Queiroz**, amaqueiroz.cic@uesc.br
+- **Ezequiel Lobo Oliveira**, eloliveira.cic@uesc.br
+- **Flávia Alessandra Santos de Jesus**, fasjesus.cic@uesc.br
+- **Gustavo Aragão Oliveira**, gaoliveira.cic@uesc.br
+- **Hênio Pedro Silva Santana** , hpssantana.cic@uesc.br
+- **João Pedro Correia da Silva Noberto**, jpcsnoberto@gmail.com
+- **Mateus Silva Lisboa**, mslisboa.cic@uesc.br
+- **Pedro Affonso Silva Marques**, pedroaffonsosilvamarques@gmail.com
+- **Solana Bomfim Lemos**, solana.ametista@gmail.com
+- **Vitor Pires Rocha**, vitor.pr04@hotmail.com
+
 
 ## Features
 
@@ -46,6 +59,70 @@ The API aggregates data from external government transparency portals and presen
     "uf": "SP",
     "municipio": "São Paulo",
     "codigoIBGE": "3550308"
+  }
+]
+```
+### Parlamentary Adments
+
+- **GET /api/v1/adments**
+  - Fetches parlamentary adments from the government transparency portal.
+  - Returns a list of adments data with details such as author, type, and various values-related information.
+
+### Example Response:
+
+```json
+[
+  {
+    "codigoEmenda": "string",
+    "ano": 0,
+    "tipoEmenda": "string",
+    "autor": "string",
+    "nomeAutor": "string",
+    "numeroEmenda": "string",
+    "localidadeDoGasto": "string",
+    "funcao": "string",
+    "subfuncao": "string",
+    "valorEmpenhado": "string",
+    "valorLiquidado": "string",
+    "valorPago": "string",
+    "valorRestoInscrito": "string",
+    "valorRestoCancelado": "string",
+    "valorRestoPago": "string"
+  }
+]
+```
+
+### Brazilian Family Scholarships (Bolsa Familia)
+
+- **GET /api/v1/family-scholarships**
+  - Fetches family scholarships of a specified city from the government transparency portal.
+  - Returns a list of family scholarships data with details such as reference date, type, and various city-related information.
+
+### Example Response:
+
+```json
+[
+  {
+    "id": 0,
+    "dataReferencia": "2024-11-24",
+    "municipio": {
+      "codigoIBGE": "string",
+      "nomeIBGE": "string",
+      "codigoRegiao": "string",
+      "nomeRegiao": "string",
+      "pais": "string",
+      "uf": {
+        "sigla": "string",
+        "nome": "string"
+      }
+    },
+    "tipo": {
+      "id": 0,
+      "descricao": "string",
+      "descricaoDetalhada": "string"
+    },
+    "valor": 0,
+    "quantidadeBeneficiados": 0
   }
 ]
 ```

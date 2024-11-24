@@ -12,12 +12,34 @@ namespace CidadaoConectado.API.Services
         : base(httpClient) 
         {}
 
-        public Task<JsonDocument?> GetResignValues()
+        public Task<JsonDocument?> GetFamilyScholarshipsAsync(string yearMonth, string IbgeCode)
         {
-            return GetResignValues(_DEFAULT_QUERY_PAGE);
+            return GetFamilyScholarshipsAsync(yearMonth, IbgeCode, _DEFAULT_QUERY_PAGE);
         }
 
-        public async Task<JsonDocument?> GetResignValues(int page)
+        public async Task<JsonDocument?> GetFamilyScholarshipsAsync(string yearMonth, string IbgeCode, int page)
+        {
+            return await CreateRequest(HttpMethod.Get, $"bolsa-familia-por-municipio?mesAno={yearMonth}&codigoIbge={IbgeCode}&pagina={page}")
+                        .ExecuteRequestAsync();
+        }
+
+        public Task<JsonDocument?> GetParliamentaryAmendmentAsync()
+        {
+            return GetParliamentaryAmendmentAsync(_DEFAULT_QUERY_PAGE);
+        }
+
+        public async Task<JsonDocument?> GetParliamentaryAmendmentAsync(int page)
+        {
+            return await CreateRequest(HttpMethod.Get, $"emendas?pagina={page}")
+                        .ExecuteRequestAsync();
+        }
+
+        public Task<JsonDocument?> GetResignValuesAsync()
+        {
+            return GetResignValuesAsync(_DEFAULT_QUERY_PAGE);
+        }
+
+        public async Task<JsonDocument?> GetResignValuesAsync(int page)
         {
             return await CreateRequest(HttpMethod.Get, $"renuncias-valor?pagina={page}")
                         .ExecuteRequestAsync();

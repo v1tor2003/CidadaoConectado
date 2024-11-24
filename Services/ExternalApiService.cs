@@ -35,21 +35,9 @@ namespace CidadaoConectado.API.Services
 
             var contentResponse = await response.Content.ReadAsStringAsync();
            
-            if (!IsResponseContentJson(response))
-            {
-                Console.WriteLine("Response is not JSON. Cannot parse.");
-                return null;
-            }
+            if (!IsResponseContentJson(response)) return JsonDocument.Parse("{}");
 
-            try
-            {
-                return JsonDocument.Parse(contentResponse);
-            }
-            catch (JsonException ex)
-            {
-                Console.WriteLine($"Failed to parse JSON: {ex.Message}");
-                throw;
-            }
+            return JsonDocument.Parse(contentResponse);
         }
 
         private static bool IsResponseContentJson(HttpResponseMessage response)
