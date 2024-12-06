@@ -1,42 +1,41 @@
-# CidadaoConectado API
+# API CidadaoConectado
 
-**CidadaoConectado** is an API designed to provide transparency and participatory features for citizens. This project is part of the **Cepedi ResTic 36 Hackathon** and aims to enhance access to public data, enabling citizens to stay informed and engage with governmental actions.
+Essa API é projetada para fornecer recursos de transparência e participação para os cidadãos para o projeto CidadaoConectado. Este projeto faz parte do **Hackathon Cepedi ResTic 36** e tem como objetivo melhorar o acesso a dados públicos, permitindo que os cidadãos se mantenham informados e se engajem com ações governamentais.
 
-The API aggregates data from external government transparency portals and presents it in a standardized format for easy integration into the **CidadaoConectado** website, which aims to increase citizen engagement in governance processes.
+A API agrega dados de portais externos de transparência governamental e os apresenta em um formato padronizado para fácil integração ao projeto **CidadaoConectado**, que busca aumentar o engajamento dos cidadãos nos processos de governança.
 
-## Project Ideation and Implementation:
+## Ideação e Implementação do Projeto:
 
-### Team Members
+### Integrantes da Equipe
 - **Adrielle Maria Alves Queiroz**, amaqueiroz.cic@uesc.br
 - **Ezequiel Lobo Oliveira**, eloliveira.cic@uesc.br
-- **Flávia Alessandra Santos de Jesus**, fasjesus.cic@uesc.br
+- **Flávia Alessandra Santos de Jesus**, developerflavia@gmail.com
 - **Gustavo Aragão Oliveira**, gaoliveira.cic@uesc.br
-- **Hênio Pedro Silva Santana** , hpssantana.cic@uesc.br
+- **Hênio Pedro Silva Santana**, hpssantana.cic@uesc.br
 - **João Pedro Correia da Silva Noberto**, jpcsnoberto@gmail.com
 - **Mateus Silva Lisboa**, mslisboa.cic@uesc.br
 - **Pedro Affonso Silva Marques**, pedroaffonsosilvamarques@gmail.com
 - **Solana Bomfim Lemos**, solana.ametista@gmail.com
 - **Vitor Pires Rocha**, vitor.pr04@hotmail.com
 
+## Funcionalidades
 
-## Features
-
-- **Data Aggregation**: Collects data from governmental transparency APIs and provides it to users in a structured format.
-- **Public Transparency**: Makes it easier for citizens to access and understand public sector data.
-- **Participatory Governance**: Allows citizens to interact with the data and participate in discussions and decisions.
-- **Swagger UI (Development Mode)**: Provides an interactive API documentation interface via Swagger, enabling developers to easily explore and test the API endpoints.
+- **Agregação de Dados**: Coleta dados de APIs governamentais de transparência e os fornece aos usuários em formato estruturado.
+- **Transparência Pública**: Facilita o acesso e entendimento dos dados do setor público pelos cidadãos.
+- **Governança Participativa**: Permite que os cidadãos interajam com os dados e participem de discussões e decisões.
+- **Swagger UI (Modo de Desenvolvimento)**: Fornece uma interface de documentação interativa via Swagger, permitindo que os desenvolvedores explorem e testem os endpoints da API facilmente.
 
 ---
 
 ## Endpoints
 
-### Resign Values
+### Valores de Renúncia
 
 - **GET /api/v1/resigns**
-  - Fetches resignation values from the government transparency portal.
-  - Returns a list of resignation data points with details such as year, value, and various tax-related information.
+  - Recupera valores de renúncia do portal de transparência governamental.
+  - Retorna uma lista de dados de renúncia com detalhes como ano, valor e várias informações relacionadas a tributos.
 
-### Example Response:
+### Exemplo de Resposta:
 
 ```json
 [
@@ -44,17 +43,17 @@ The API aggregates data from external government transparency portals and presen
     "ano": 2023,
     "valorRenunciado": 1500000,
     "tipoRenuncia": "Fiscal",
-    "descricaoBeneficioFiscal": "Exemption on income tax",
-    "descricaoFundamentoLegal": "Article 5, Law 123/2017",
-    "tributo": "Income Tax",
-    "formaTributacao": "Progressive",
+    "descricaoBeneficioFiscal": "Isenção de imposto de renda",
+    "descricaoFundamentoLegal": "Artigo 5, Lei 123/2017",
+    "tributo": "Imposto de Renda",
+    "formaTributacao": "Progressiva",
     "cnpj": "12.345.678/0001-90",
     "razaoSocial": "Empresa X Ltda.",
     "nomeFantasia": "Empresa X",
     "cnaeCodigoGrupo": "47",
     "cnaeCodigoClasse": "4741",
     "cnaeCodigoSubClasse": "4741200",
-    "cnaeNomeClasse": "Retail trade",
+    "cnaeNomeClasse": "Comércio Varejista",
     "cnaeDivisao": "47",
     "uf": "SP",
     "municipio": "São Paulo",
@@ -62,13 +61,14 @@ The API aggregates data from external government transparency portals and presen
   }
 ]
 ```
-### Parlamentary Adments
+
+### Emendas Parlamentares
 
 - **GET /api/v1/adments**
-  - Fetches parlamentary adments from the government transparency portal.
-  - Returns a list of adments data with details such as author, type, and various values-related information.
+  - Recupera emendas parlamentares do portal de transparência governamental.
+  - Retorna uma lista de dados de emendas com detalhes como autor, tipo e valores relacionados.
 
-### Example Response:
+### Exemplo de Resposta:
 
 ```json
 [
@@ -92,13 +92,13 @@ The API aggregates data from external government transparency portals and presen
 ]
 ```
 
-### Brazilian Family Scholarships (Bolsa Familia)
+### Bolsa Família
 
 - **GET /api/v1/family-scholarships**
-  - Fetches family scholarships of a specified city from the government transparency portal.
-  - Returns a list of family scholarships data with details such as reference date, type, and various city-related information.
+  - Recupera dados de bolsas família de uma cidade específica a partir do portal de transparência governamental.
+  - Retorna uma lista de dados de bolsas com detalhes como data de referência, tipo e informações relacionadas à cidade.
 
-### Example Response:
+### Exemplo de Resposta:
 
 ```json
 [
@@ -129,103 +129,103 @@ The API aggregates data from external government transparency portals and presen
 
 ---
 
-## Configuration
+## Configuração
 
-The API relies on configuration stored in the `appsettings.json` file for connecting to external data sources:
+A API utiliza configurações armazenadas no arquivo `appsettings.json` para conectar-se a fontes de dados externas:
 
 ```json
 {
-  "TransparencyApiSettings" : {
+  "TransparencyApiSettings": {
     "BaseUrl": "https://api.portaldatransparencia.gov.br/api-de-dados",
     "ApiKey": {
       "Name": "chave-api-dados",
-      "Value": "your-api-key-here"
+      "Value": "sua-chave-aqui"
     }
   }
 }
 ```
 
-### Key Configuration Options:
+### Principais Opções de Configuração:
 
-- **BaseUrl**: URL for the external transparency API.
-- **ApiKey**: The API key used to authenticate requests to the transparency API.
+- **BaseUrl**: URL da API externa de transparência.
+- **ApiKey**: Chave de API usada para autenticar as requisições à API de transparência.
 
 ---
 
-## Setup & Installation
+## Configuração e Instalação
 
-To get the **CidadaoConectado API** up and running locally:
+Para rodar a **API CidadaoConectado** localmente:
 
-1. Clone this repository:
+1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/your-username/CidadaoConectado.git
+   git clone https://github.com/seu-usuario/CidadaoConectado.git
    cd CidadaoConectado
    ```
 
-2. Install dependencies using `dotnet`:
+2. Instale as dependências usando `dotnet`:
 
    ```bash
    dotnet restore
    ```
 
-3. Add your API key and configure the base URL in the `appsettings.json` file (see above).
+3. Adicione sua chave de API e configure a URL base no arquivo `appsettings.json` (veja acima).
 
-4. Run the application:
+4. Execute a aplicação:
 
    ```bash
    dotnet run
    ```
 
-   The API will start and listen on `http://localhost:5131` by default.
+   A API será iniciada e ficará disponível em `http://localhost:5131` por padrão.
 
 ---
 
-## Swagger Support
+## Suporte a Swagger
 
-In **development mode**, the API supports Swagger for easy exploration and testing of the endpoints.
+No **modo de desenvolvimento**, a API oferece suporte ao Swagger para fácil exploração e testes dos endpoints.
 
-- **Swagger UI**: Access the interactive Swagger UI at the following URL:
+- **Swagger UI**: Acesse a interface interativa do Swagger no seguinte endereço:
 
   ```
   http://localhost:5131/swagger
   ```
 
-  Here you can test the `/resigns` endpoint and other available API endpoints, view request/response schemas, and interact with the API.
+  Aqui você pode testar o endpoint `/resigns` e outros disponíveis, visualizar esquemas de requisição/resposta e interagir com a API.
 
 ---
 
-## Testing
+## Testes
 
-To test the API endpoints, you can use tools like **Postman** or **curl**:
+Para testar os endpoints da API, você pode usar ferramentas como **Postman** ou **curl**:
 
 ```bash
 curl http://localhost:5131/api/v1/resigns
 ```
 
-This will fetch the resignation values from the configured external source.
+Isso retornará os valores de renúncia do recurso externo configurado.
 
 ---
 
-## Contributing
+## Contribuição
 
-If you would like to contribute to the **CidadaoConectado** project, please feel free to fork the repository and submit a pull request with your proposed changes.
+Se desejar contribuir para o projeto **CidadaoConectado**, sinta-se à vontade para fazer um fork do repositório e enviar um pull request com suas mudanças propostas.
 
-Make sure to follow best practices for API development, such as:
+Certifique-se de seguir as melhores práticas de desenvolvimento de APIs, como:
 
-- Proper error handling
-- Writing unit and integration tests
-- Keeping code clean and well-documented
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Tratamento adequado de erros
+- Escrita de testes unitários e de integração
+- Manter o código limpo e bem documentado
 
 ---
 
-## Acknowledgements
+## Licença
 
-- This project was developed as part of the **Cepedi ResTic 36 Hackathon**.
-- The external API data is provided by the **Portal da Transparência** of the Brazilian government.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## Agradecimentos
+
+- Este projeto foi desenvolvido como parte do **Hackathon Cepedi ResTic 36**.
+- Os dados da API externa são fornecidos pelo **Portal da Transparência** do governo brasileiro.
