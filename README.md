@@ -127,6 +127,83 @@ A API agrega dados de portais externos de transparência governamental e os apre
 ]
 ```
 
+### Usuários
+
+- **GET /api/v1/users**
+  - Retorna uma lista de usuários cadastrados no sistema e seus detalhes.
+
+### Exemplo de Resposta:
+
+```json
+[
+  {
+    "id": "string",
+    "email": "string"
+  }
+]
+```
+
+- **POST /api/v1/users**
+  - Registra novo usuário no sistema.
+
+### Exemplo de Corpo da Requisição:
+
+```json
+{
+  "id": "string",
+  "email": "string",
+  "password": "string"
+}
+```
+
+### Posts
+
+- **GET /api/v1/posts**
+  - Retorna uma lista de posts realizados pelos usuários e seus detalhes.
+
+### Exemplo de Resposta:
+
+```json
+[
+  {
+    "userId": "string",
+    "title": "string",
+    "desc": "string",
+    "tags": "string",
+    "pubDate": "string",
+    "likesCount": 0
+  }
+]
+```
+
+- **POST /api/v1/posts**
+  - Cria um novo post no sistema.
+
+### Exemplo de Corpo da Requisição:
+
+```json
+{
+  "userId": "string",
+  "title": "string",
+  "desc": "string",
+  "tags": "string"
+}
+```
+
+### Likes
+
+- **POST /api/v1/likes**
+  - Cria um novo like para um post no sistema.
+
+### Exemplo de Corpo da Requisição:
+
+```json
+{
+  "postId": 0,
+  "userId": "string"
+}
+```
+
 ---
 
 ## Configuração
