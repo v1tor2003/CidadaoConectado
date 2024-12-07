@@ -8,5 +8,5 @@ public sealed record PostResponse
     public string Tags { get; set; } = string.Empty;
     public DateTime PubDate { get; set; }
 
-    public int LikesCount { get; set; }
+    public List<string> Likes { get; set; } = [];
 }
