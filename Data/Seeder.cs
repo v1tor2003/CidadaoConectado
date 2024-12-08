@@ -17,9 +17,9 @@ public static class Seeder
     {
         modelBuilder.Entity<User>()
                     .HasData(
-                        new User { Id = "1", Email = "user1@example.com", Password = "password123" },
-                        new User { Id = "2", Email = "user2@example.com", Password = "password456" },
-                        new User { Id = "3", Email = "user3@example.com", Password = "password789" }
+                        new User { Id = "1", Name = "User Name1", Email = "user1@example.com", Password = "password123" },
+                        new User { Id = "2", Name = "User Name2", Email = "user2@example.com", Password = "password456" },
+                        new User { Id = "3", Name = "User Name3", Email = "user3@example.com", Password = "password789" }
                     );
     }
 

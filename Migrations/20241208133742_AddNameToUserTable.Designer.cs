@@ -3,6 +3,7 @@ using System;
 using CidadaoConectado.API.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CidadaoConectado.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241208133742_AddNameToUserTable")]
+    partial class AddNameToUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,7 +115,7 @@ namespace CidadaoConectado.API.Migrations
                         {
                             Id = 1,
                             Desc = "Detalhamento do orçamento público para o próximo ano, incluindo áreas prioritárias.",
-                            PubDate = new DateTime(2024, 11, 28, 13, 39, 6, 78, DateTimeKind.Utc).AddTicks(7609),
+                            PubDate = new DateTime(2024, 11, 28, 13, 37, 40, 466, DateTimeKind.Utc).AddTicks(3007),
                             Tags = "Orçamento, Governo, Transparência",
                             Title = "Orçamento Público 2024",
                             UserId = "1"
@@ -121,7 +124,7 @@ namespace CidadaoConectado.API.Migrations
                         {
                             Id = 2,
                             Desc = "Participe da consulta sobre melhorias no transporte público e infraestrutura urbana.",
-                            PubDate = new DateTime(2024, 12, 1, 13, 39, 6, 78, DateTimeKind.Utc).AddTicks(8091),
+                            PubDate = new DateTime(2024, 12, 1, 13, 37, 40, 466, DateTimeKind.Utc).AddTicks(3497),
                             Tags = "Consulta Pública, Mobilidade Urbana, Participação",
                             Title = "Consulta Pública: Mobilidade Urbana",
                             UserId = "2"
@@ -130,7 +133,7 @@ namespace CidadaoConectado.API.Migrations
                         {
                             Id = 3,
                             Desc = "Veja os indicadores ambientais e as ações realizadas no último trimestre.",
-                            PubDate = new DateTime(2024, 12, 5, 13, 39, 6, 78, DateTimeKind.Utc).AddTicks(8097),
+                            PubDate = new DateTime(2024, 12, 5, 13, 37, 40, 466, DateTimeKind.Utc).AddTicks(3503),
                             Tags = "Meio Ambiente, Relatório, Sustentabilidade",
                             Title = "Relatório de Desempenho Ambiental",
                             UserId = "3"
@@ -164,21 +167,21 @@ namespace CidadaoConectado.API.Migrations
                         {
                             Id = "1",
                             Email = "user1@example.com",
-                            Name = "User Name1",
+                            Name = "",
                             Password = "password123"
                         },
                         new
                         {
                             Id = "2",
                             Email = "user2@example.com",
-                            Name = "User Name2",
+                            Name = "",
                             Password = "password456"
                         },
                         new
                         {
                             Id = "3",
                             Email = "user3@example.com",
-                            Name = "User Name3",
+                            Name = "",
                             Password = "password789"
                         });
                 });

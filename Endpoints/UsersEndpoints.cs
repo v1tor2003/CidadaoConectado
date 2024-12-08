@@ -1,6 +1,5 @@
 using CidadaoConectado.API.Data.Dtos.User;
 using CidadaoConectado.API.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 public static class UsersEndpoints

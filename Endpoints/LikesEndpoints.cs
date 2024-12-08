@@ -29,5 +29,19 @@ public static class LikesEndpoints
         })
         .WithName("LikePost")
         .WithOpenApi();
+
+        app.MapDelete(url+"/{likeId}", async (
+            [FromServices] ILikeService likeService,
+            [FromRoute] int likeId 
+        ) => {
+            var like = await likeService.GetByIdAsync(likeId);
+            if(like is null) return Results.BadRequest($"like with given like.Id: {likeId} does not exists");
+
+            await likeService.DeleteAsync(like);
+
+            return Results.NoContent();
+        })
+        .WithName("UnlikePost")
+        .WithOpenApi();
     }
 }

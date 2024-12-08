@@ -1,3 +1,5 @@
+using CidadaoConectado.API.Data.Dtos.Like;
+
 namespace CidadaoConectado.API.Data.Dtos.Post;
 
 public sealed record PostResponse
@@ -8,5 +10,5 @@ public sealed record PostResponse
     public string Tags { get; set; } = string.Empty;
     public DateTime PubDate { get; set; }
     public string UserId {get; set;} = string.Empty;
-    public List<string> Likes { get; set; } = [];
+    public List<LikeResponse> Likes { get; set; } = [];
 }

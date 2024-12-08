@@ -15,7 +15,9 @@ public class MappingProfile : Profile
 
         CreateMap<PostRequest, Post>();
         CreateMap<Post, PostResponse>()
-            .ForMember(dest => dest.Likes, opt => opt.MapFrom(src => src.Likes.Select(l => l.UserId)));
+            .ForMember(dest => dest.Likes, 
+                opt => opt.MapFrom(src => src.Likes.Select(l => new LikeResponse { LikeId = l.Id, UserId = l.UserId }))
+            );
 
         CreateMap<LikeRequest, Like>();
     }
