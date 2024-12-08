@@ -46,7 +46,6 @@ app.MapResignsEndpoints(API_VERSION);
 app.MapAdmentsEndpoints(API_VERSION);
 app.MapFamilyScholarshipsEndpoints(API_VERSION);
 app.MapUsersEndpoints(API_VERSION);
-app.MapLikesEndpoints(API_VERSION);
 app.MapPostsEndpoints(API_VERSION);
 
 app.Run();

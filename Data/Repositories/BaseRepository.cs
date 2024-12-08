@@ -37,11 +37,36 @@ public abstract class BaseRepository<PK, T> : IRepository<PK, T>
 
     public Task UpdateAsync(T entity)
     {
-        var entityEntry = _context.Set<T>().Find(entity);
-        
-        if(entityEntry is not null)
+         // Check if the entity is already tracked
+        var trackedEntity = _context.Entry(entity);
+        if (trackedEntity.State == EntityState.Detached)
         {
-            _context.Set<T>().Entry(entityEntry).CurrentValues.SetValues(entity);
+            // Attach the entity if it is not already tracked
+            var primaryKey = _context.Model.FindEntityType(typeof(T))?
+                .FindPrimaryKey()?
+                .Properties
+                .Select(p => p.PropertyInfo?.GetValue(entity))
+                .ToArray();
+
+            if (primaryKey is not null)
+            {
+                var existingEntity = _context.Set<T>().Find(primaryKey);
+                if (existingEntity is not null)
+                {
+                    // Update the existing entity with new values
+                    _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+                }
+            }
+            else
+            {
+                // Attach and mark entity as modified if primary key is unknown
+                _context.Attach(entity).State = EntityState.Modified;
+            }
+        }
+        else
+        {
+            // Entity is already tracked, mark it as modified
+            trackedEntity.State = EntityState.Modified;
         }
 
         return Task.CompletedTask;
