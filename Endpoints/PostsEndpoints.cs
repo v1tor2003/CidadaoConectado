@@ -49,11 +49,6 @@ public static class PostsEndpoints
         .WithName("CreatePost")
         .WithOpenApi();
 
-
-        app.MapPatch(url + "/{postId}/likes1", ([FromRoute] int postId) => {
-            Console.WriteLine($"Simpler endpoint hit with postId: {postId}");
-        });
-
         app.MapPatch(url + "/{postId}/likes", async (
             [FromServices] IPostService postService,
             [FromBody] LikeRequest likeRequest,

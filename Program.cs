@@ -12,19 +12,12 @@ builder.Services.AddSwaggerGen();
 var configuration = builder.Configuration;
 
 builder.Services.ConfigureMapper();
+builder.Services.ConfigureCache(configuration);
 builder.Services.ConfigureDatabase(configuration);
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureCrudServices();
-
 builder.Services.ConfigureHttpClient(configuration);
-
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowAngularApp", policy => {
-        policy.WithOrigins("http://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
+builder.Services.ConfigureCors(configuration);
 
 var app = builder.Build();
 
@@ -39,6 +32,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<CacheMiddleware>();
 
 const string API_VERSION = "/api/v1";
 

@@ -9,8 +9,8 @@ namespace CidadaoConectado.API.Interfaces
         public Task<JsonDocument?> GetResignValuesAsync(Int32 page);
         public Task<JsonDocument?> GetParliamentaryAmendmentAsync();
         public Task<JsonDocument?> GetParliamentaryAmendmentAsync(Int32 page);
-
         public Task<JsonDocument?> GetFamilyScholarshipsAsync(string yearMonth, string IbgeCode);
         public Task<JsonDocument?> GetFamilyScholarshipsAsync(string yearMonth, string IbgeCode, Int32 page);
+        public JsonDocument? MapFamilyScholarshipAsync(JsonDocument jsonDocument);
     }
 }

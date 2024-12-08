@@ -1,5 +1,4 @@
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using CidadaoConectado.API.Interfaces;
 
 namespace CidadaoConectado.API.Services
@@ -42,6 +41,31 @@ namespace CidadaoConectado.API.Services
         {
             return await CreateRequest(HttpMethod.Get, $"renuncias-valor?pagina={page}")
                         .ExecuteRequestAsync();
+        }
+
+        public JsonDocument? MapFamilyScholarshipAsync(JsonDocument jsonDocument)
+        {
+            var rootElement = jsonDocument.RootElement;
+            if(rootElement.ValueKind != JsonValueKind.Array || !rootElement.EnumerateArray().Any())
+                return null;
+
+            var element = rootElement[0];
+
+            using var jsonStream = new MemoryStream();
+            using (var writer = new Utf8JsonWriter(jsonStream))
+            {
+                writer.WriteStartObject();
+
+                writer.WriteString("codigoIbge", element.GetProperty("municipio").GetProperty("codigoIBGE").GetString());
+                writer.WriteString("dataReferencia", element.GetProperty("dataReferencia").GetString());
+                writer.WriteNumber("valor", element.GetProperty("valor").GetDecimal());
+                writer.WriteNumber("quantidadeBeneficiados", element.GetProperty("quantidadeBeneficiados").GetInt32());
+
+                writer.WriteEndObject();
+            }
+
+            jsonStream.Seek(0, SeekOrigin.Begin);
+            return JsonDocument.Parse(jsonStream);
         }
     }
 }
