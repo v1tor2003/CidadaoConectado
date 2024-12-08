@@ -27,6 +27,5 @@ public static class FamilyScholarshipsEndpoints
         })
         .WithName("GetFamilyScholarship")
         .WithOpenApi();
-
     }
 }

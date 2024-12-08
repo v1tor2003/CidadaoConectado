@@ -8,16 +8,26 @@ namespace CidadaoConectado.API.Services;
 public class UserService : BaseCrudService<string, User>, IUserService
 {
     private readonly IUserRepository _userRepository;
-    public UserService(IUserRepository repository, IMapper mapper) 
+    private readonly IImageUploadService _imageUploadService;
+    public UserService(IUserRepository repository, IImageUploadService imageUploadService, IMapper mapper) 
     : base(repository, mapper)
     {
         _userRepository = repository;
+        _imageUploadService = imageUploadService;
     }
 
     public async Task Register(UserRequest userRequest)
     {
         var user = await _userRepository.GetByEmail(userRequest.Email);
         if(user is not null) return;
-        await CreateAsync(_mapper.Map<User>(userRequest));
+
+        user = _mapper.Map<User>(userRequest);
+        
+        user.AvatarPath = _imageUploadService.CreateImageFilePath(userRequest.Avatar);
+        if(userRequest.Avatar is not null)
+            await _imageUploadService.Save(userRequest.Avatar, user.AvatarPath);
+        
+        Console.WriteLine(user.AvatarPath);
+        await CreateAsync(user);
     }
 }

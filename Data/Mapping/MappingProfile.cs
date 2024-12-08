@@ -10,10 +10,14 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<UserRequest, User>();
+        CreateMap<UserRequest, User>()
+            .ForMember(dest => dest.AvatarPath, opt => opt.Ignore());
+
         CreateMap<User, UserResponse>();
 
-        CreateMap<PostRequest, Post>();
+        CreateMap<PostRequest, Post>()
+            .ForMember(dest => dest.PostImagePath, opt => opt.Ignore());
+
         CreateMap<Post, PostResponse>()
             .ForMember(dest => dest.Likes, 
                 opt => opt.MapFrom(src => src.Likes.Select(l => new LikeResponse { LikeId = l.Id, UserId = l.UserId }))

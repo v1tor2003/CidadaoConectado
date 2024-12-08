@@ -10,6 +10,6 @@ public class User
     [EmailAddress]
     public string Email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
-
+    public string AvatarPath { get; set; } = string.Empty;
     public virtual ICollection<Post> Posts { get; set; } = [];
 }

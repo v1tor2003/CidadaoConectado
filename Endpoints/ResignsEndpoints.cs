@@ -15,8 +15,7 @@ public static class ResignsEndpoints
         {
             var data = await apiService.GetResignValuesAsync();
 
-            if (data is null)
-                return Results.Problem("Internal Error while fetching data.");
+            if (data is null) return Results.Problem("Internal Error while fetching data.");
 
             return Results.Json(data);
         })

@@ -12,6 +12,8 @@ public class PostService : BaseCrudService<int, Post>, IPostService
 
     public async Task CreateAsync(PostRequest postRequest)
     {
-        await _repository.CreateAsync(_mapper.Map<Post>(postRequest));
+        var post = _mapper.Map<Post>(postRequest);
+        
+        await _repository.CreateAsync(post);
     }
 }

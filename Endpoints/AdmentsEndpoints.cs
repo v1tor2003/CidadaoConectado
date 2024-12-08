@@ -14,8 +14,7 @@ public static class AdmentsEndpoints
         {
             var data = await apiService.GetParliamentaryAmendmentAsync();
 
-            if (data is null)
-                return Results.Problem("Internal Error while fetching data.");
+            if (data is null) return Results.Problem("Internal Error while fetching data.");
 
             return Results.Json(data);
         })

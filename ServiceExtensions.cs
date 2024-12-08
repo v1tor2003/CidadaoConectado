@@ -11,6 +11,7 @@ public static class ServiceExtensions
 {
     public static void ConfigureHttpClient(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddHttpContextAccessor();
         services.AddHttpClient<IGovTransparencyApiService, GovTransparencyApiService>(client => {
             var baseUrl = configuration["TransparencyApiSettings:BaseUrl"];
             var apiKeyName = configuration["TransparencyApiSettings:ApiKey:Name"];
@@ -32,7 +33,7 @@ public static class ServiceExtensions
             options.ConfigurationOptions = new ConfigurationOptions
             {
                 EndPoints = { configuration.GetConnectionString("Redis")! },
-                Password = configuration.GetValue<string>("RedisPassword")!,
+                Password = configuration["RedisPassword"]!,
                 KeepAlive = 60,
                 ConnectTimeout = 10000,
             };
@@ -59,6 +60,7 @@ public static class ServiceExtensions
 
     public static void ConfigureCrudServices(this IServiceCollection services)
     {
+        services.AddScoped<IImageUploadService>(sp => new ImageUploadService(AppExtensions.GetUploadsFolder()));
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IPostService, PostService>();
         services.AddScoped<ILikeService, LikeService>();

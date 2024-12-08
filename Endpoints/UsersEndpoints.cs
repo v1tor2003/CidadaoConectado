@@ -11,8 +11,7 @@ public static class UsersEndpoints
 
         app.MapGet(url, async ([FromServices] IUserService userService) => {
             var data = await userService.GetAllAsync<UserResponse>();
-            if(!data.Any()) return Results.NotFound();
-
+            
             return Results.Json(data);
         })
         .WithName("GetUsers")

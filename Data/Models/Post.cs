@@ -10,6 +10,7 @@ public class Post
     [DataType(DataType.Text)]
     public string Desc { get; set; } = string.Empty;
     public string Tags { get; set; } = string.Empty;
+    public string PostImagePath { get; set; } = string.Empty;
     public DateTime PubDate { get; set; } = DateTime.UtcNow;
     
     public required string UserId { get; set; }

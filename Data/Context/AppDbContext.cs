@@ -32,7 +32,7 @@ public class AppDbContext : DbContext
                     .HasForeignKey(p => p.PostId)
                     .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Seed();
+        //modelBuilder.Seed();
         base.OnModelCreating(modelBuilder);
     }
 }

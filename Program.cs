@@ -1,6 +1,7 @@
 using CidadaoConectado.API;
 using CidadaoConectado.API.Endpoints;
 using CidadaoConectado.API.Middlewares;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,15 +22,15 @@ builder.Services.ConfigureCors(configuration);
 
 var app = builder.Build();
 
-app.UseCors("AllowAngularApp");
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAngularApp");
+app.UseImageUploads();
+// Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<CacheMiddleware>();
@@ -42,5 +43,18 @@ app.MapFamilyScholarshipsEndpoints(API_VERSION);
 app.MapUsersEndpoints(API_VERSION);
 app.MapPostsEndpoints(API_VERSION);
 
+app.MapGet(API_VERSION+"/uploads/{fileName}", ([FromRoute] string fileName) => {
+    var filePath = Path.Combine(AppExtensions.GetUploadsFolder(), fileName);
+    
+    if(File.Exists(filePath))
+    {
+        var fileBytes = File.ReadAllBytes(filePath);
+        return Results.File(fileBytes, "image/jpeg");
+    }
+
+    return Results.NotFound();
+});
+
 app.Run();
+
 
