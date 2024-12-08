@@ -21,13 +21,6 @@ public class UserService : BaseCrudService<string, User>, IUserService
         var user = await _userRepository.GetByEmail(userRequest.Email);
         if(user is not null) return;
 
-        user = _mapper.Map<User>(userRequest);
-        
-        user.AvatarPath = _imageUploadService.CreateImageFilePath(userRequest.Avatar);
-        if(userRequest.Avatar is not null)
-            await _imageUploadService.Save(userRequest.Avatar, user.AvatarPath);
-        
-        Console.WriteLine(user.AvatarPath);
-        await CreateAsync(user);
+        await CreateAsync(_mapper.Map<User>(userRequest));
     }
 }
