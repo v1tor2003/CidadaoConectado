@@ -7,6 +7,6 @@ public sealed record PostResponse
     public string Desc { get; set; } = string.Empty;
     public string Tags { get; set; } = string.Empty;
     public DateTime PubDate { get; set; }
-
+    public string UserId {get; set;} = string.Empty;
     public List<string> Likes { get; set; } = [];
 }

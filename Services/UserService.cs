@@ -17,7 +17,7 @@ public class UserService : BaseCrudService<string, User>, IUserService
     public async Task Register(UserRequest userRequest)
     {
         var user = await _userRepository.GetByEmail(userRequest.Email);
-        if(user is not null) throw new InvalidOperationException($"User with email: {userRequest.Email} already exists.");
+        if(user is not null) return;
         await CreateAsync(_mapper.Map<User>(userRequest));
     }
 }
