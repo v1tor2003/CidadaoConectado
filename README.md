@@ -294,6 +294,11 @@ A API agrega dados de portais externos de transparência governamental e os apre
 - **DELETE /api/v1/posts/{id}/likes/{likeId}**
   - Desrelaciona o like e seus detalhes ao post.
 
+
+### Endpoint de uploads:
+
+- **GET /api/v1/uploads/{fileName}**
+  - Retorna imagens enviadas previamente a api pelo seu nome.
 ---
 
 ## Configuração e Instalação
