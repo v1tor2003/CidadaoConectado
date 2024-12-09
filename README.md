@@ -32,8 +32,7 @@ A API agrega dados de portais externos de transparência governamental e os apre
 ### Valores de Renúncia
 
 - **GET /api/v1/resigns**
-  - Recupera valores de renúncia do portal de transparência governamental.
-  - Retorna uma lista de dados de renúncia com detalhes como ano, valor e várias informações relacionadas a tributos.
+  - Recupera uma lista das renúncias do portal de transparência governamental.
 
 ### Exemplo de Resposta:
 
@@ -62,11 +61,40 @@ A API agrega dados de portais externos de transparência governamental e os apre
 ]
 ```
 
+- **GET /api/v1/resigns/{id}**
+  - Recupera uma renúncia do portal de transparência governamental.
+
+### Exemplo de Resposta:
+
+```json
+
+{
+  "ano": 2023,
+  "valorRenunciado": 1500000,
+  "tipoRenuncia": "Fiscal",
+  "descricaoBeneficioFiscal": "Isenção de imposto de renda",
+  "descricaoFundamentoLegal": "Artigo 5, Lei 123/2017",
+  "tributo": "Imposto de Renda",
+  "formaTributacao": "Progressiva",
+  "cnpj": "12.345.678/0001-90",
+  "razaoSocial": "Empresa X Ltda.",
+  "nomeFantasia": "Empresa X",
+  "cnaeCodigoGrupo": "47",
+  "cnaeCodigoClasse": "4741",
+  "cnaeCodigoSubClasse": "4741200",
+  "cnaeNomeClasse": "Comércio Varejista",
+  "cnaeDivisao": "47",
+  "uf": "SP",
+  "municipio": "São Paulo",
+  "codigoIBGE": "3550308"
+}
+
+```
+
 ### Emendas Parlamentares
 
 - **GET /api/v1/adments**
   - Recupera emendas parlamentares do portal de transparência governamental.
-  - Retorna uma lista de dados de emendas com detalhes como autor, tipo e valores relacionados.
 
 ### Exemplo de Resposta:
 
@@ -92,45 +120,71 @@ A API agrega dados de portais externos de transparência governamental e os apre
 ]
 ```
 
-### Bolsa Família
-
-- **GET /api/v1/family-scholarships**
-  - Recupera dados de bolsas família de uma cidade específica a partir do portal de transparência governamental.
-  - Retorna uma lista de dados de bolsas com detalhes como data de referência, tipo e informações relacionadas à cidade.
+- **GET /api/v1/adments/{id}**
+  - Recupera uma emenda parlamentare do cache pelo seu id.
 
 ### Exemplo de Resposta:
 
 ```json
-[
-  {
+
+{
+  "codigoEmenda": "string",
+  "ano": 0,
+  "tipoEmenda": "string",
+  "autor": "string",
+  "nomeAutor": "string",
+  "numeroEmenda": "string",
+  "localidadeDoGasto": "string",
+  "funcao": "string",
+  "subfuncao": "string",
+  "valorEmpenhado": "string",
+  "valorLiquidado": "string",
+  "valorPago": "string",
+  "valorRestoInscrito": "string",
+  "valorRestoCancelado": "string",
+  "valorRestoPago": "string"
+}
+
+```
+
+### Bolsa Família
+
+- **GET /api/v1/family-scholarships/{ibgeCode}?yearMonth=AAAAMM**
+  - Recupera dados de bolsas família de uma cidade específica a partir do portal de transparência governamental.
+
+### Exemplo de Resposta:
+
+```json
+
+{
+  "id": 0,
+  "dataReferencia": "2024-11-24",
+  "municipio": {
+    "codigoIBGE": "string",
+    "nomeIBGE": "string",
+    "codigoRegiao": "string",
+    "nomeRegiao": "string",
+    "pais": "string",
+    "uf": {
+      "sigla": "string",
+      "nome": "string"
+    }
+  },
+  "tipo": {
     "id": 0,
-    "dataReferencia": "2024-11-24",
-    "municipio": {
-      "codigoIBGE": "string",
-      "nomeIBGE": "string",
-      "codigoRegiao": "string",
-      "nomeRegiao": "string",
-      "pais": "string",
-      "uf": {
-        "sigla": "string",
-        "nome": "string"
-      }
-    },
-    "tipo": {
-      "id": 0,
-      "descricao": "string",
-      "descricaoDetalhada": "string"
-    },
-    "valor": 0,
-    "quantidadeBeneficiados": 0
-  }
-]
+    "descricao": "string",
+    "descricaoDetalhada": "string"
+  },
+  "valor": 0,
+  "quantidadeBeneficiados": 0
+}
+
 ```
 
 ### Usuários
 
 - **GET /api/v1/users**
-  - Retorna uma lista de usuários cadastrados no sistema e seus detalhes.
+  - Retorna uma lista de usuários cadastrados no sistema.
 
 ### Exemplo de Resposta:
 
@@ -138,9 +192,25 @@ A API agrega dados de portais externos de transparência governamental e os apre
 [
   {
     "id": "string",
-    "email": "string"
+    "name": "string",
+    "email": "string",
+    "avatar": "string"
   }
 ]
+```
+
+- **GET /api/v1/users/{id}**
+  - Retorna um usuário pelo seu id.
+
+### Exemplo de Resposta:
+
+```json
+{
+  "id": "string",
+  "name": "string",
+  "email": "string",
+  "avatar": "string"
+}
 ```
 
 - **POST /api/v1/users**
@@ -151,8 +221,9 @@ A API agrega dados de portais externos de transparência governamental e os apre
 ```json
 {
   "id": "string",
+  "name": "string",
   "email": "string",
-  "password": "string"
+  "avatar": "string"
 }
 ```
 
@@ -176,6 +247,24 @@ A API agrega dados de portais externos de transparência governamental e os apre
 ]
 ```
 
+- **GET /api/v1/posts/{id}**
+  - Retorna um post pelo seu id.
+
+### Exemplo de Resposta:
+
+```json
+{
+  "userId": "string",
+  "title": "string",
+  "desc": "string",
+  "tags": "string",
+  "postImage":"string",
+  "pubDate": "string",
+  "likes": []
+}
+
+```
+
 - **POST /api/v1/posts**
   - Cria um novo post no sistema.
 
@@ -186,46 +275,24 @@ A API agrega dados de portais externos de transparência governamental e os apre
   "userId": "string",
   "title": "string",
   "desc": "string",
-  "tags": "string"
+  "tags": "string",
+  "image": "string"
 }
 ```
 
-### Likes
-
-- **POST /api/v1/likes**
-  - Cria um novo like para um post no sistema.
+- **PATCH /api/v1/posts/{id}/likes**
+  - Relaciona like e seus detalhes ao post.
 
 ### Exemplo de Corpo da Requisição:
 
 ```json
 {
-  "postId": 0,
   "userId": "string"
 }
 ```
 
----
-
-## Configuração
-
-A API utiliza configurações armazenadas no arquivo `appsettings.json` para conectar-se a fontes de dados externas:
-
-```json
-{
-  "TransparencyApiSettings": {
-    "BaseUrl": "https://api.portaldatransparencia.gov.br/api-de-dados",
-    "ApiKey": {
-      "Name": "chave-api-dados",
-      "Value": "sua-chave-aqui"
-    }
-  }
-}
-```
-
-### Principais Opções de Configuração:
-
-- **BaseUrl**: URL da API externa de transparência.
-- **ApiKey**: Chave de API usada para autenticar as requisições à API de transparência.
+- **DELETE /api/v1/posts/{id}/likes/{likeId}**
+  - Desrelaciona o like e seus detalhes ao post.
 
 ---
 
