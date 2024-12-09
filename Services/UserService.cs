@@ -8,12 +8,10 @@ namespace CidadaoConectado.API.Services;
 public class UserService : BaseCrudService<string, User>, IUserService
 {
     private readonly IUserRepository _userRepository;
-    private readonly IImageUploadService _imageUploadService;
-    public UserService(IUserRepository repository, IImageUploadService imageUploadService, IMapper mapper) 
+    public UserService(IUserRepository repository, IMapper mapper) 
     : base(repository, mapper)
     {
         _userRepository = repository;
-        _imageUploadService = imageUploadService;
     }
 
     public async Task Register(UserRequest userRequest)

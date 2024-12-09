@@ -34,6 +34,7 @@ public static class UsersEndpoints
             [FromServices] IUserService userService,
             [FromBody] UserRequest userRequest
         ) => {
+            Console.WriteLine("Register User ran");
             await userService.Register(userRequest);
 
             return Results.Created();
